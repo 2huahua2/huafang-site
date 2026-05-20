@@ -1,0 +1,8 @@
+【柒月星之花坊】Gitee Pages 静态部署（免备案）
+
+1. 本地录入页点「下载 data.json」，用下载的文件覆盖本目录的 data.json。
+2. 本目录需包含：index.html、data.json、style.css、app-gallery.js（已在仓库里）。
+3. Gitee 仓库 → 服务 → Gitee Pages → 选择含这些文件的目录（或把整个 gitee-static 作为站点根）→ 开启 Pages。
+4. 生成网址形如 https://你的用户名.gitee.io/仓库名/ ，把链接发给公会成员即可只读查询。
+
+注意：静态页无法调用你电脑上的 Flask；每次更新花册都要重新上传 data.json 并等待 Pages 刷新（或重新推送）。
