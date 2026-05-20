@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "huafang-site",
+  "compatibility_date": "2026-05-20",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "gitee-static"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
