@@ -1406,7 +1406,8 @@
     ],
     "云紫茨菇": [
       "小菊姐",
-      "雾妄言"
+      "雾妄言",
+      "昭禾"
     ],
     "浅绯茨菇": [
       "昭禾"
@@ -1863,5 +1864,5 @@
     "橙霞洋金凤": "flower-images/fp_3326ef6d17b1b7216d31566ce9a228a0.webp",
     "星朗垂丝茉莉": "flower-images/fp_abfa2e3d65a82a90fec3edcd5c08755c.webp"
   },
-  "flowerPortraitEpoch": 9
+  "flowerPortraitEpoch": 10
 }
