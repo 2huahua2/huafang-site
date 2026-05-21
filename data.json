@@ -1435,6 +1435,12 @@
     "星朗垂丝茉莉": [
       "雾妄言",
       "昭禾"
+    ],
+    "九色灵鹿": [
+      "小花咪酱"
+    ],
+    "赤霞火焰花": [
+      "小花咪酱"
     ]
   },
   "members": {
@@ -1852,7 +1858,9 @@
     "藤紫大花萱草": "flower-images/fp_7731d37ae19e30ca5b4349fb7a84f79f.webp",
     "蜜粉白玉草": "flower-images/fp_b2a2e49c466fb0b50cb8cc25ec4d0b68.webp",
     "橙霞洋金凤": "flower-images/fp_3326ef6d17b1b7216d31566ce9a228a0.webp",
-    "星朗垂丝茉莉": "flower-images/fp_abfa2e3d65a82a90fec3edcd5c08755c.webp"
+    "星朗垂丝茉莉": "flower-images/fp_abfa2e3d65a82a90fec3edcd5c08755c.webp",
+    "九色灵鹿": "flower-images/fp_11fb1387cd8fb08dc8720a98d4683810.webp",
+    "赤霞火焰花": "flower-images/fp_860265610834b102a2bf3cd67f85a7fa.webp"
   },
-  "flowerPortraitEpoch": 10
+  "flowerPortraitEpoch": 12
 }
