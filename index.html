@@ -126,10 +126,10 @@
 
     <div id="modeTable" class="search-mode" style="display:none;">
       <div class="card">
-        <div class="card-title"><span class="icon">📋</span> 按花卉总览</div>
+        <div class="card-title"><span class="icon">📋</span> 成员花量统计（花少在上）</div>
         <div class="filter-bar">
           <div class="input-with-clear filter-bar-input-wrap">
-            <input type="text" class="form-input" id="tableSearch" placeholder="筛选花名 / 游戏 ID / 昵称…" oninput="onTableSearchInput()">
+            <input type="text" class="form-input" id="tableSearch" placeholder="筛选成员 ID / 昵称 / 花名…" oninput="onTableSearchInput()">
             <button type="button" id="tableSearchClear" class="input-clear-btn" title="清空" onclick="clearTableSearch()" aria-label="清空">✕</button>
           </div>
         </div>
@@ -382,38 +382,41 @@
   function renderTable() {
     updateTableSearchClearBtn();
     const data = galleryData;
-    const flowers = data.flowers || {};
     const keyword = document.getElementById("tableSearch").value.trim().toLowerCase();
-    const filtered = Object.entries(flowers).filter(([name, owners]) => {
-      if (!keyword) return true;
-      if (name.toLowerCase().includes(keyword)) return true;
-      return (owners || []).some(o => memberMatchesKeyword(data, o, keyword));
-    });
-    filtered.sort((a, b) => {
-      const d = (b[1] || []).length - (a[1] || []).length;
-      return d !== 0 ? d : a[0].localeCompare(b[0], "zh-CN");
+    let members = getAllMemberIds(data);
+    if (keyword) {
+      members = members.filter(m => {
+        if (memberMatchesKeyword(data, m, keyword)) return true;
+        return getFlowersOfMember(data, m).some(f => f.toLowerCase().includes(keyword));
+      });
+    }
+    members.sort((a, b) => {
+      const ca = getFlowersOfMember(data, a).length;
+      const cb = getFlowersOfMember(data, b).length;
+      if (ca !== cb) return ca - cb;
+      return formatMemberLabel(data, a).localeCompare(formatMemberLabel(data, b), "zh-CN");
     });
     const container = document.getElementById("tableContent");
-    if (filtered.length === 0) {
-      container.innerHTML = `<div class="empty-state"><div class="empty-icon">🌱</div><div class="empty-title">没有匹配项</div></div>`;
+    if (members.length === 0) {
+      const total = getAllMemberIds(data).length;
+      container.innerHTML = `<div class="empty-state"><div class="empty-icon">🌱</div><div class="empty-title">${total === 0 ? "暂无成员" : "没有匹配项"}</div></div>`;
       return;
     }
     container.innerHTML = `
       <div class="table-wrapper">
         <table class="data-table">
-          <thead><tr><th>花卉名称</th><th>拥有人数</th><th style="text-align:left;">拥有者</th></tr></thead>
+          <thead><tr><th>成员</th><th>花数</th><th style="text-align:left;">拥有的花</th></tr></thead>
           <tbody>
-            ${filtered.map(([name, owners]) => {
-              const portUrl = getFlowerPortraitUrlBusted(data, name);
-              const thumb = portUrl
-                ? `<img class="flower-table-thumb" src="${escAttr(portUrl)}" alt="" loading="lazy">`
-                : `<span class="flower-table-thumb-placeholder" title="无图">—</span>`;
+            ${members.map(m => {
+              const flowers = getFlowersOfMember(data, m).sort((a, b) => a.localeCompare(b, "zh-CN"));
               return `
               <tr>
-                <td><div class="flower-name-with-thumb">${thumb}<strong>${escHtml(name)}</strong></div></td>
-                <td><span class="badge badge-count">${(owners || []).length}</span></td>
+                <td><strong>${escHtml(formatMemberLabel(data, m))}</strong></td>
+                <td><span class="badge badge-count">${flowers.length}</span></td>
                 <td style="text-align:left;">
-                  ${(owners || []).length ? (owners || []).map(o => `<span class="member-tag" title="${escAttr(o)}">${escHtml(formatMemberLabel(data, o))}</span>`).join("") : "—"}
+                  ${flowers.length
+                    ? flowers.map(f => `<span class="flower-pill">${escHtml(f)}</span>`).join("")
+                    : '<span style="color:#ccc; font-size:12px;">无</span>'}
                 </td>
               </tr>`;
             }).join("")}
