@@ -1499,10 +1499,18 @@
     ],
     "花屿闲趣": [
       "小花咪酱",
-      "昭禾"
+      "昭禾",
+      "雾妄言",
+      "赴夏"
     ],
     "花椅轻摇": [
-      "小花咪酱"
+      "小花咪酱",
+      "雾妄言",
+      "赴夏"
+    ],
+    "悠然云间": [
+      "小菊姐",
+      "白诗懿"
     ]
   },
   "members": {
@@ -1931,7 +1939,8 @@
     "赤霞火焰花": "flower-images/fp_860265610834b102a2bf3cd67f85a7fa.webp",
     "花约归时": "flower-images/fp_b4671cab1f466d492d1e2926fd44514f.webp",
     "花椅轻摇": "flower-images/fp_23ce69b7de064afc29b57148fc5f4374.webp",
-    "花屿闲趣": "flower-images/fp_21063717209be6a8c27093420d8ae259.webp"
+    "花屿闲趣": "flower-images/fp_21063717209be6a8c27093420d8ae259.webp",
+    "悠然云间": "flower-images/fp_96b374620255af84a36dcc330096caf7.webp"
   },
-  "flowerPortraitEpoch": 16
+  "flowerPortraitEpoch": 17
 }
